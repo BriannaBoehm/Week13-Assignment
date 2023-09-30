@@ -14,7 +14,7 @@ import lombok.ToString;
 
 @Entity
 @Data
-public class Employee {
+public class Employee {//generates the employee table with the columns listed 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +29,5 @@ public class Employee {
 	@ToString.Exclude //prevents recursion when .toString() is called 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pet_store_id")
-	PetStore petStore; 
+	PetStore petStore; //creates the many to one relationship between employee and pet store 
 }

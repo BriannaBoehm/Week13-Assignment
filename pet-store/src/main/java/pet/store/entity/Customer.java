@@ -16,7 +16,7 @@ import lombok.ToString;
 
 @Entity
 @Data
-public class Customer {
+public class Customer {//generates the customer table with the columns listed 
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class Customer {
 	
 	@EqualsAndHashCode.Exclude //prevents recursion when .equals() and .hashCode() methods are called
 	@ToString.Exclude //prevents recursion when .toString() is called 
-	@ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)
+	@ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)//creates the many to many relationship between customer and pet store 
 	Set<PetStore> petStores;
 	
 }

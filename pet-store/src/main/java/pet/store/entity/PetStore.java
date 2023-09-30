@@ -18,7 +18,7 @@ import lombok.ToString;
 
 @Entity
 @Data
-public class PetStore {
+public class PetStore {//generates the pet store table with the columns listed 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
