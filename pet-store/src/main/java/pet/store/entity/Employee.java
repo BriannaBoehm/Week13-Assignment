@@ -18,16 +18,16 @@ public class Employee {//generates the employee table with the columns listed
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer employeeId; 
+	private Long employeeId; 
 	
 	private String employeeFirstName; 
 	private String employeeLastName; 
-	private Integer employeePhone; 
+	private String employeePhone; 
 	private String employeeTitle; 
 	
 	@EqualsAndHashCode.Exclude //prevents recursion when .equals() and .hashCode() methods are called
 	@ToString.Exclude //prevents recursion when .toString() is called 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pet_store_id")
-	PetStore petStore; //creates the many to one relationship between employee and pet store 
+	private PetStore petStore; //creates the many to one relationship between employee and pet store 
 }

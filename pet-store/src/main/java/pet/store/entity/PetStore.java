@@ -1,5 +1,6 @@
 package pet.store.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -22,14 +23,14 @@ public class PetStore {//generates the pet store table with the columns listed
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer petStoreId;
+	private Long petStoreId;
 	
 	private String petStoreName; 
 	private String petStoreAddress; 
 	private String petStoreCity; 
 	private String petStoreState; 
-	private Integer petStoreZip; 
-	private Integer petStorePhone; 
+	private String petStoreZip; 
+	private String petStorePhone; 
 	
 	@EqualsAndHashCode.Exclude //prevents recursion when .equals() and .hashCode() methods are called
 	@ToString.Exclude //prevents recursion when .toString() is called 
@@ -37,11 +38,11 @@ public class PetStore {//generates the pet store table with the columns listed
 	@JoinTable(name = "pet_store_customer", joinColumns = 
 	@JoinColumn(name = "pet_store_id"), inverseJoinColumns = 
 	@JoinColumn(name = "customer_id"))
-	Set<Customer> customers; 
+	private Set<Customer> customers = new HashSet<>(); 
 	
 	@EqualsAndHashCode.Exclude //prevents recursion when .equals() and .hashCode() methods are called 
 	@ToString.Exclude //prevents recursion when .toString() is called 
 	@OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<Employee> employees;
+	private Set<Employee> employees = new HashSet<>();
 	
 }

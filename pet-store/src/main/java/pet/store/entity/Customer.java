@@ -1,9 +1,9 @@
 package pet.store.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,17 +20,15 @@ public class Customer {//generates the customer table with the columns listed
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer customerId;
+	private Long customerId;
 	
 	private String customerFirstName; 
 	private String customerLastName; 
-	
-	@Column(unique = true) //does not allow duplicate emails 
 	private String customerEmail;
 	
 	@EqualsAndHashCode.Exclude //prevents recursion when .equals() and .hashCode() methods are called
 	@ToString.Exclude //prevents recursion when .toString() is called 
 	@ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)//creates the many to many relationship between customer and pet store 
-	Set<PetStore> petStores;
+	private Set<PetStore> petStores = new HashSet<>();
 	
 }
