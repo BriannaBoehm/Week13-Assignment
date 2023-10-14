@@ -1,5 +1,6 @@
 package pet.store.controller.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import lombok.Data;
@@ -19,26 +20,26 @@ public class PetStoreData {
 	private String petStoreState; 
 	private String petStoreZip; 
 	private String petStorePhone; 
-	Set<Customer> petStoreCustomer; 
-	Set<Employee> petStoreEmployee;
+	Set<PetStoreCustomer> petStoreCustomer = new HashSet<>(); 
+	Set<PetStoreEmployee> petStoreEmployee = new HashSet<>();
 	
 	
 	public PetStoreData(PetStore petStore) {//creates a new constructor for PetStoreData that takes in a PetStore object as a parameter 
 		//these statements set the values of the petStore data pieces to the values stored in the petStore object 
-		petStoreId = petStore.getPetStoreId();
-		petStoreName = petStore.getPetStoreName();
-		petStoreAddress = petStore.getPetStoreAddress();
-		petStoreCity = petStore.getPetStoreCity();
-		petStoreState = petStore.getPetStoreState();
-		petStoreZip = petStore.getPetStoreZip(); 
-		petStorePhone = petStore.getPetStorePhone();
+		this.petStoreId = petStore.getPetStoreId();
+		this.petStoreName = petStore.getPetStoreName();
+		this.petStoreAddress = petStore.getPetStoreAddress();
+		this.petStoreCity = petStore.getPetStoreCity();
+		this.petStoreState = petStore.getPetStoreState();
+		this.petStoreZip = petStore.getPetStoreZip(); 
+		this.petStorePhone = petStore.getPetStorePhone();
 		
 		for(Customer customer: petStore.getCustomers()) {//for loops are needed to set the sets to contain the information from the petStore object 
-			petStoreCustomer.add(customer);
+			this.petStoreCustomer.add(new PetStoreCustomer(customer));
 		}
 		
 		for(Employee employee: petStore.getEmployees()) {
-			petStoreEmployee.add(employee);
+			this.petStoreEmployee.add(new PetStoreEmployee(employee));
 		}
 		
 	}
@@ -53,10 +54,10 @@ public class PetStoreData {
 		private String customerEmail;
 		
 		public PetStoreCustomer (Customer customer) {//constructor for PetStoreCustomer DTO that takes in a customer object 
-			customerId = customer.getCustomerId(); 
-			customerFirstName = customer.getCustomerFirstName();
-			customerLastName = customer.getCustomerLastName();
-			customerEmail = customer.getCustomerEmail();
+			this.customerId = customer.getCustomerId(); 
+			this.customerFirstName = customer.getCustomerFirstName();
+			this.customerLastName = customer.getCustomerLastName();
+			this.customerEmail = customer.getCustomerEmail();
 		}
 		
 	}
@@ -72,11 +73,11 @@ public class PetStoreData {
 		private String employeeTitle;
 		
 		public PetStoreEmployee(Employee employee) {//constructor for PetStoreEmployee DTO that takes in an employee object 
-			employeeId = employee.getEmployeeId(); 
-			employeeFirstName = employee.getEmployeeFirstName(); 
-			employeeLastName = employee.getEmployeeLastName(); 
-			employeePhone = employee.getEmployeePhone(); 
-			employeeTitle = employee.getEmployeeTitle();
+			this.employeeId = employee.getEmployeeId(); 
+			this.employeeFirstName = employee.getEmployeeFirstName(); 
+			this.employeeLastName = employee.getEmployeeLastName(); 
+			this.employeePhone = employee.getEmployeePhone(); 
+			this.employeeTitle = employee.getEmployeeTitle();
 		}
 		
 	}
